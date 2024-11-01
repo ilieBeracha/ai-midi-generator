@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Root settings with clean typography and smooth color transitions */
+:root {
+  --primary-color: #007acc;
+  --secondary-color: #141414;
+  --text-color-dark: #212121;
+  --text-color-light: #ffffff;
+  --background-dark: #0B0D0C;
+  --background-light: #ffffff;
+
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+  transition: color 0.3s, background-color 0.3s;
+}
+
+h1 {
+  font-size: 70px;
+  font-weight:300;
+  background-image: radial-gradient(circle, #7c9593, #0d9488);
+
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+
+h1:before,
+h1:after {
+  background-color: #c50000;
+}
+
+h1 span {
+  display: block;
+  font-size: 0.5em;
+  line-height: 1.3;
+}
+h1 em {
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* === HEADING STYLE #1 === */
+.one h1 {
+  text-align: center;
+  text-transform: uppercase;
+  padding-bottom: 5px;
+}
+.one h1:before {
+  width: 28px;
+  height: 5px;
+  display: block;
+  content: "";
+  position: absolute;
+  bottom: 3px;
+  left: 50%;
+  margin-left: -14px;
+  background-color: #b80000;
+}
+.one h1:after {
+  width: 100px;
+  height: 1px;
+  display: block;
+  content: "";
+  position: relative;
+  margin-top: 25px;
+  left: 50%;
+  margin-left: -50px;
+  background-color: #b80000;
+}
+
+.view {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+}
+
+label{
+  margin-bottom: 0.5rem;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: var(--background-dark);
+  color: var(--text-color-light);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+a:hover {
+  color: var(--secondary-color);
+}
+
+
