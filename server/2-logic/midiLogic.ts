@@ -3,7 +3,8 @@ import fs from "fs";
 import { MidiSettings } from "../types/midi";
 import { Track } from "midi-writer-js/build/types/chunks/track";
 
-export function generateMidi(midiSettings: MidiSettings) {
+export function generateMidi(midiSettings: MidiSettings, instrument: string) {
+  console.log("midiSettings in midiLogic", midiSettings);
   let track = new MidiWriter.Track();
 
   track = addTrackName(track, midiSettings);
@@ -11,7 +12,6 @@ export function generateMidi(midiSettings: MidiSettings) {
   track = addInstrument(track, midiSettings);
   track = addNotesEvent(track, midiSettings);
   track = setTimeSignature(track, midiSettings);
-  track = addCopyright(track, midiSettings);
 
   const write = new MidiWriter.Writer(track);
   const midiData = write.buildFile();
@@ -21,6 +21,8 @@ export function generateMidi(midiSettings: MidiSettings) {
   return {
     file: midiData,
     dataUri: write.dataUri(),
+    trackName: midiSettings.trackName,
+    instrument: instrument,
   };
 }
 
@@ -32,7 +34,7 @@ function saveFile(midiData: Uint8Array, trackName: string) {
 }
 
 function addNotesEvent(track: Track, midiSettings: MidiSettings) {
-  midiSettings.notes.forEach((note, index) => {
+  midiSettings.notes.forEach((note) => {
     const noteEvent = new MidiWriter.NoteEvent({
       pitch: note.pitch,
       duration: note.duration,
@@ -45,10 +47,6 @@ function addNotesEvent(track: Track, midiSettings: MidiSettings) {
       tick: note.tick,
     });
     track.addEvent(noteEvent);
-
-    if (midiSettings.lyrics && midiSettings.lyrics[index]) {
-      track.addLyric(midiSettings.lyrics[index]);
-    }
   });
 
   return track;
@@ -62,14 +60,6 @@ function setTimeSignature(track: Track, midiSettings: MidiSettings) {
       24,
       8
     );
-  }
-
-  return track;
-}
-
-function addCopyright(track: Track, midiSettings: MidiSettings) {
-  if (midiSettings.copyright) {
-    track.addCopyright(midiSettings.copyright);
   }
 
   return track;

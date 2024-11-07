@@ -10,11 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tonejs/midi": "^2.0.28",
     "axios": "^1.7.7",
     "lucide-react": "^0.454.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.27.0",
+    "smplr": "^0.15.1",
+    "tone": "^15.0.4",
     "zustand": "^5.0.1"
   },
   "devDependencies": {

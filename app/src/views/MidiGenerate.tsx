@@ -9,7 +9,7 @@ export default function Generate() {
   return (
     <div className="view flex flex-col items-center justify-center">
       {midiSettings ? (
-        <MidiGeneratedResults />
+        <MidiGeneratedResults midiSettings={midiSettings} />
       ) : (
         <>
           <GenerateForm />
